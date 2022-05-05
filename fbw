@@ -15,7 +15,7 @@ unset name
 
 if [ ! -f "${HOME}/.flyrc" ]
 then
-    printf "%s: can't open .flyrc\n" $0
+    printf "%s: can't open .flyrc: No such file or directory.\n" $0
     exit
 fi
 
