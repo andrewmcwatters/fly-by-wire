@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+config=pipeline.yml
+while getopts c: name
+do
+    case $name in
+    p)    config="$OPTARG";;
+    ?)    printf "usage: %s: [-c config]\n" $0
+          exit 2;;
+    esac
+done
+shift $(($OPTIND - 1))
+unset name
+
+if [ ! -f "${HOME}/.flyrc" ]
+then
+    printf "%s: can't open .flyrc\n" $0
+    exit
+fi
+
+pipeline="$(git rev-parse --show-toplevel)"
+fly -t "$target" set-pipeline \
+    --pipeline "$pipeline" \
+    --config "$config"
