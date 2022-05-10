@@ -3,7 +3,7 @@ set -e
 
 if [ -n "$FLY_TARGET" ]
 then
-FLY_TARGET=main
+    FLY_TARGET=main
 fi
 
 config=pipeline.yml
